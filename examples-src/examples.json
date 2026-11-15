@@ -1,0 +1,351 @@
+[
+ {
+  "id": "oled_hello",
+  "title": "OLED 128x64 (SSD1306, I2C2): hello + uptime",
+  "file": "oled_hello.c",
+  "circuit": {
+   "parts": [
+    {
+     "id": "oled1",
+     "type": "oled",
+     "x": 340,
+     "y": 200,
+     "attrs": {
+      "color": "white",
+      "i2c-address": "0x3C",
+      "height": "64"
+     }
+    }
+   ],
+   "wires": [
+    [
+     "oled1:GND",
+     "bluepill:GND.3",
+     "black"
+    ],
+    [
+     "oled1:VCC",
+     "bluepill:3V3.2",
+     "red"
+    ],
+    [
+     "oled1:SCL",
+     "bluepill:PB10",
+     "green"
+    ],
+    [
+     "oled1:SDA",
+     "bluepill:PB11",
+     "blue"
+    ]
+   ]
+  }
+ },
+ {
+  "id": "oled_anim",
+  "title": "OLED 128x64: animation at 400 kHz (fast mode)",
+  "file": "oled_anim.c",
+  "circuit": {
+   "parts": [
+    {
+     "id": "oled1",
+     "type": "oled",
+     "x": 340,
+     "y": 200,
+     "attrs": {
+      "color": "dual",
+      "i2c-address": "0x3C",
+      "height": "64"
+     }
+    }
+   ],
+   "wires": [
+    [
+     "oled1:GND",
+     "bluepill:GND.3",
+     "black"
+    ],
+    [
+     "oled1:VCC",
+     "bluepill:3V3.2",
+     "red"
+    ],
+    [
+     "oled1:SCL",
+     "bluepill:PB10",
+     "green"
+    ],
+    [
+     "oled1:SDA",
+     "bluepill:PB11",
+     "blue"
+    ]
+   ]
+  }
+ },
+ {
+  "id": "i2c_scan",
+  "title": "I2C scanner for I2C1 + I2C2 (Serial Monitor)",
+  "file": "i2c_scan.c",
+  "circuit": {
+   "parts": [
+    {
+     "id": "oled1",
+     "type": "oled",
+     "x": 340,
+     "y": 200,
+     "attrs": {
+      "color": "white",
+      "i2c-address": "0x3C",
+      "height": "64"
+     }
+    }
+   ],
+   "wires": [
+    [
+     "oled1:GND",
+     "bluepill:GND.3",
+     "black"
+    ],
+    [
+     "oled1:VCC",
+     "bluepill:3V3.2",
+     "red"
+    ],
+    [
+     "oled1:SCL",
+     "bluepill:PB10",
+     "green"
+    ],
+    [
+     "oled1:SDA",
+     "bluepill:PB11",
+     "blue"
+    ]
+   ]
+  }
+ },
+ {
+  "id": "lpc_blink",
+  "mcu": "lpc1768",
+  "title": "LPC1768: blink + button (FIO GPIO, SysTick)",
+  "file": "lpc_blink.c",
+  "circuit": {
+   "parts": [
+    {
+     "id": "led1",
+     "type": "led",
+     "x": 540,
+     "y": 860,
+     "rot": 2,
+     "attrs": {
+      "color": "red"
+     }
+    },
+    {
+     "id": "btn1",
+     "type": "btn",
+     "x": 1040,
+     "y": 560,
+     "attrs": {
+      "color": "green"
+     }
+    }
+   ],
+   "wires": [
+    [
+     "led1:A",
+     "lpc1768:P1.18",
+     "red"
+    ],
+    [
+     "led1:C",
+     "lpc1768:GND.4",
+     "black"
+    ],
+    [
+     "btn1:1.l",
+     "lpc1768:GND.5",
+     "black"
+    ],
+    [
+     "btn1:2.l",
+     "lpc1768:P2.10",
+     "blue"
+    ]
+   ]
+  }
+ },
+ {
+  "id": "lpc_uart",
+  "mcu": "lpc1768",
+  "title": "LPC1768: UART0 echo (Serial Monitor)",
+  "file": "lpc_uart.c",
+  "circuit": {
+   "parts": [],
+   "wires": []
+  }
+ },
+ {
+  "id": "lpc_pwm",
+  "mcu": "lpc1768",
+  "title": "LPC1768: PWM1 LED fade",
+  "file": "lpc_pwm.c",
+  "circuit": {
+   "parts": [
+    {
+     "id": "led1",
+     "type": "led",
+     "x": 540,
+     "y": 860,
+     "rot": 2,
+     "attrs": {
+      "color": "red"
+     }
+    }
+   ],
+   "wires": [
+    [
+     "led1:A",
+     "lpc1768:P1.18",
+     "red"
+    ],
+    [
+     "led1:C",
+     "lpc1768:GND.4",
+     "black"
+    ]
+   ]
+  }
+ },
+ {
+  "id": "lpc_adc",
+  "mcu": "lpc1768",
+  "title": "LPC1768: 12-bit ADC + potentiometer",
+  "file": "lpc_adc.c",
+  "circuit": {
+   "parts": [
+    {
+     "id": "pot1",
+     "type": "pot",
+     "x": 200,
+     "y": 420,
+     "rot": 3,
+     "attrs": {},
+     "val": 2048
+    }
+   ],
+   "wires": [
+    [
+     "pot1:SIG",
+     "lpc1768:P0.23",
+     "green"
+    ],
+    [
+     "pot1:VCC",
+     "lpc1768:3V3.1",
+     "red"
+    ],
+    [
+     "pot1:GND",
+     "lpc1768:GND.1",
+     "black"
+    ]
+   ]
+  }
+ },
+ {
+  "id": "lpc_eint",
+  "mcu": "lpc1768",
+  "title": "LPC1768: external interrupt EINT1",
+  "file": "lpc_eint.c",
+  "circuit": {
+   "parts": [
+    {
+     "id": "led1",
+     "type": "led",
+     "x": 540,
+     "y": 860,
+     "rot": 2,
+     "attrs": {
+      "color": "red"
+     }
+    },
+    {
+     "id": "btn1",
+     "type": "btn",
+     "x": 1040,
+     "y": 560,
+     "attrs": {
+      "color": "green"
+     }
+    }
+   ],
+   "wires": [
+    [
+     "led1:A",
+     "lpc1768:P1.18",
+     "red"
+    ],
+    [
+     "led1:C",
+     "lpc1768:GND.4",
+     "black"
+    ],
+    [
+     "btn1:1.l",
+     "lpc1768:GND.5",
+     "black"
+    ],
+    [
+     "btn1:2.l",
+     "lpc1768:P2.11",
+     "blue"
+    ]
+   ]
+  }
+ },
+ {
+  "id": "lpc_oled",
+  "mcu": "lpc1768",
+  "title": "LPC1768: OLED 128x64 over I2C2",
+  "file": "lpc_oled.c",
+  "circuit": {
+   "parts": [
+    {
+     "id": "oled1",
+     "type": "oled",
+     "x": 780,
+     "y": 840,
+     "attrs": {
+      "color": "white",
+      "i2c-address": "0x3C",
+      "height": "64"
+     }
+    }
+   ],
+   "wires": [
+    [
+     "oled1:GND",
+     "lpc1768:GND.4",
+     "black"
+    ],
+    [
+     "oled1:VCC",
+     "lpc1768:3V3.5",
+     "red"
+    ],
+    [
+     "oled1:SCL",
+     "lpc1768:P0.11",
+     "green"
+    ],
+    [
+     "oled1:SDA",
+     "lpc1768:P0.10",
+     "blue"
+    ]
+   ]
+  }
+ }
+]
